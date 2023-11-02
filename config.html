@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de la Habitación</title>
+    <link rel="stylesheet" type="text/css" href="iroom.css">
+</head>
+<body>
+    <div class="contenedor">
+        <div class="titulo">Configuración de la Habitación</div>
+        <div class="menu">
+            <a href="index.html">Volver a la página principal</a>
+        </div>
+        <div class="informacion">Rellene los datos</div>
+        <div class="habitacion">
+            <form action="datos.js" method="post">
+                <!-- Datos de habitación -->
+                <h2>Datos de la Habitación</h2>
+                <label for="Pais">País:</label>
+                <input type="text" id="Pais" name="Pais" list="ListaPaises">
+                <datalist id="ListaPaises">
+                    <option value="Alemania">
+                    <option value="Argentina">
+                    <option value="Australia">
+                    <option value="Austria">
+                    <option value="Bélgica">
+                    <option value="Brasil">
+                    <option value="Canadá">
+                    <option value="China">
+                    <option value="Dinamarca">
+                    <option value="Egipto">
+                    <option value="España">
+                    <option value="Estados Unidos">
+                    <option value="Finlandia">
+                    <option value="Francia">
+                    <option value="Grecia">
+                    <option value="India">
+                    <option value="Irlanda">
+                    <option value="Italia">
+                    <option value="Japón">
+                    <option value="México">
+                    <option value="Noruega">
+                    <option value="Países Bajos">
+                    <option value="Polonia">
+                    <option value="Portugal">
+                    <option value="Reino Unido">
+                    <option value="Rusia">
+                    <option value="Sudáfrica">
+                    <option value="Suecia">
+                    <option value="Suiza">
+                    <option value="Tailandia">
+                    <option value="Turquía">
+                    <option value="Ucrania">
+                </datalist>
+                <br><br>
+                <label for="Ciudad">Ciudad:</label>
+                <input type="text" id="Ciudad" name="Ciudad">
+                <br><br>
+                <label for="localizacion">Coordenadas GPS </label>
+                <input type="text" id="localizacion" name="localizacion" placeholder="Ejemplo: N 40º 30' 45.00&quot;, O 3º 20' 54.00&quot;">
+                <input type="button" value="Ver en Google Maps" onclick="verEnGoogleMaps()">
+                <br><br>
+                <label for="mapLink">Enlace a Google Maps:</label>
+                <input type="url" id="mapLink" name="mapLink">
+                <br><br>
+                <label for="Foto">Foto de la habitación:</label>
+                <input type="file" id="foto" name="foto">
+                <br><br>
+                <label for="Contraseña">Contraseña:</label>
+                <input type="password" id="Contraseña" name="Contraseña">
+                <span id="CalidadContraseña"></span>
+                <br><br>
+                <input type="submit" value="Enviar datos" id="enviarDatos">
+            </div>
+            <div class="sensores">
+                <h2>Sensores de la Habitación:</h2>
+                <!-- Configuración sensores -->
+                <label for="SensorTemperatura">Temperatura:</label>
+                <div class="checkbox" id="SensorTemperatura"></div>
+                <br>
+                <label for="SensorHumedad">Humedad:</label>
+                <div class="checkbox" id="SensorHumedad"></div>
+                <br>
+                <label for="SensorSonido">Nivel de Sonido:</label>
+                <div class="checkbox" id="SensorSonido"></div>
+                <br>
+                <label for="SensorLuz">Nivel de Luz:</label>
+                <div class="checkbox" id="SensorLuz"></div>
+                <br>
+                <label for="SensorMovimiento">Movimiento:</label>
+                <div class="checkbox" id="SensorMovimiento"></div>
+                <br>            
+                <!-- Configuración de temperatura -->
+                <h2>Alertas de Temperatura:</h2>
+                <label for="minTemp">Temperatura Mínima (°C):</label>
+                <div class="range-container">
+                    <input type="range" id="minTemp" name="minTemp" min="-20" max="45">
+                    <span class="range-value" data-range-target="minTemp">0°C</span>
+                </div>
+                <br><br>
+                <label for="maxTemp">Temperatura Máxima (°C):</label>
+                <div class="range-container">
+                    <input type="range" id="maxTemp" name="maxTemp" min="-20" max="45">
+                    <span class="range-value" data-range-target="maxTemp">0°C</span>
+                </div>
+                <br><br>
+                <label for="temperaturaMedia">Temperatura Media:</label>
+                <span id="temperaturaMedia">0.00°C</span>
+                <br><br><br>
+            </form>
+            </div>  
+            <div class="pie"><img src="icono.jpg" style="width: 130px; height: 43px;"></div>
+        </div>
+    </div>
+</body>
+    <script>
+        // Función para cambiar el estado de los cuadrados al hacer clic
+        function toggleCheckbox(id) {
+            const checkbox = document.getElementById(id);
+            checkbox.classList.toggle("checked");
+        }
+
+        document.getElementById("SensorTemperatura").addEventListener("click", function() {
+            toggleCheckbox("SensorTemperatura");
+        });
+
+        document.getElementById("SensorHumedad").addEventListener("click", function() {
+            toggleCheckbox("SensorHumedad");
+        });
+
+        document.getElementById("SensorSonido").addEventListener("click", function() {
+            toggleCheckbox("SensorSonido");
+        });
+
+        document.getElementById("SensorLuz").addEventListener("click", function() {
+            toggleCheckbox("SensorLuz");
+        });
+
+        document.getElementById("SensorMovimiento").addEventListener("click", function() {
+            toggleCheckbox("SensorMovimiento");
+        });
+    </script>
+    <script>
+        function verEnGoogleMaps() {
+            var localizacion = document.getElementById("localizacion").value;
+
+            localizacion = localizacion.replace(/º/g, '+');
+            localizacion = localizacion.replace(/'/g, '+');
+            localizacion = localizacion.replace(/"/g, '')
+            localizacion = localizacion.replace(/N/g, '+');
+            localizacion = localizacion.replace(/S/g, '-');
+            localizacion = localizacion.replace(/E/g, '+');
+            localizacion = localizacion.replace(/O/g, '-');
+
+            // Genera el enlace a Google Maps
+            var enlace = "https://maps.google.com/maps?q=" + localizacion;
+            window.open(enlace);
+        }
+    </script>
+    <script>
+        // Función para actualizar el valor de la barra en tiempo real
+        function updateRangeValue(inputId, targetId) {
+            var range = document.getElementById(inputId);
+            var target = document.querySelector('[data-range-target="' + targetId + '"]');
+            
+            range.addEventListener('input', function () {
+                target.textContent = range.value + '°C';
+            });
+        }
+    
+        updateRangeValue('minTemp', 'minTemp');
+        updateRangeValue('maxTemp', 'maxTemp');
+
+        function actualizarTemperaturaMedia() {
+            var minTempRange = document.getElementById("minTemp");
+            var maxTempRange = document.getElementById("maxTemp");
+            var temperaturaMediaSpan = document.getElementById("temperaturaMedia");
+
+            var minTempValue = parseFloat(minTempRange.value);
+            var maxTempValue = parseFloat(maxTempRange.value);
+
+            var temperaturaMedia = (minTempValue + maxTempValue) / 2;
+
+            temperaturaMediaSpan.innerHTML = temperaturaMedia.toFixed(2) + "°C";
+
+            if (temperaturaMedia < 20 || temperaturaMedia > 26) {
+                temperaturaMediaSpan.style.color = "red";
+                //alert("La temperatura media está fuera del rango (20-26°C).");
+            } else {
+                temperaturaMediaSpan.style.color = "green";
+            }
+
+        }
+
+        // Agregar un detector de eventos a los elementos de rango
+        document.getElementById("minTemp").addEventListener("input", actualizarTemperaturaMedia);
+        document.getElementById("maxTemp").addEventListener("input", actualizarTemperaturaMedia)
+    </script>
+    <script>
+        var Paises = ["Alemania","Argentina","Australia","Austria","Bélgica","Brasil","Canadá","China","Dinamarca","Egipto","España","Estados Unidos","Finlandia","Francia","Grecia","India","Irlanda","Italia","Japón","México","Noruega","Países Bajos","Polonia","Portugal","Reino Unido","Rusia","Sudáfrica","Suecia","Suiza","Tailandia","Turquía","Ucrania",];
+
+        document.getElementById("enviarDatos").addEventListener("click", function(event) {
+        event.preventDefault();
+
+        // Obtiene los valores de los campos
+        var country = document.getElementById("Pais").value;
+        var ciudad = document.getElementById("Ciudad").value;
+        var localizacion = document.getElementById("localizacion").value;
+        var mapLink = document.getElementById("mapLink").value;
+        var foto = document.getElementById("foto").value;
+        var sensorTemperatura = document.getElementById("SensorTemperatura").value;
+        var sensorHumedad = document.getElementById("SensorHumedad").value;
+        var sensorSonido = document.getElementById("SensorSonido").value;
+        var sensorLuz = document.getElementById("SensorLuz").value;
+        var sensorMovimiento = document.getElementById("SensorMovimiento").value;
+        var minTemp = document.getElementById("minTemp").value;
+        var maxTemp = document.getElementById("maxTemp").value;
+        var password = document.getElementById("Contraseña").value;
+        var Contraseña = document.getElementById("Contraseña");
+        var CalidadContraseña = document.getElementById("CalidadContraseña");
+
+        Contraseña.addEventListener("input", function () {
+        var password = this.value;
+
+        if (password.length < 6) {
+                CalidadContraseña.textContent = "mala";
+                CalidadContraseña.style.color = "red";
+            } else if (password.length >= 6 && password.length <= 7) {
+                CalidadContraseña.textContent = "aceptable";
+                CalidadContraseña.style.color = "yellow";
+            } else if (password.length >= 8) {
+                CalidadContraseña.textContent = "buena";
+                CalidadContraseña.style.color = "green";
+            }
+        });
+
+        if (Paises.includes(country)) {
+            
+            if (password.length < 6) {
+                alert("La contraseña debe tener al menos 6 caracteres.");
+            } else if (password.length >= 6 && password.length <= 7) {
+                alert("La contraseña tiene una longitud aceptable (6-7 caracteres).");
+
+                        // Almacena los valores en el Local Storage
+                        localStorage.setItem("Pais", Pais);
+                        localStorage.setItem("Ciudad", ciudad);
+                        localStorage.setItem("localizacion", localizacion);
+                        localStorage.setItem("mapLink", mapLink);
+                        localStorage.setItem("foto", foto);
+                        localStorage.setItem("Contraseña", Contraseña);
+                        localStorage.setItem("sensorTemperatura", sensorTemperatura);
+                        localStorage.setItem("sensorHumedad", sensorHumedad);
+                        localStorage.setItem("sensorSonido", sensorSonido);
+                        localStorage.setItem("sensorLuz", sensorLuz);
+                        localStorage.setItem("sensorMovimiento", sensorMovimiento);
+                        localStorage.setItem("minTemp", minTemp);
+                        localStorage.setItem("maxTemp", maxTemp);
+
+                        alert("Datos guardados con éxito.");
+                        window.location.href = "index.html";
+
+            } else if (password.length >= 8) {
+                alert("La contraseña es segura (8 o más caracteres).");
+
+                        // Almacena los valores en el Local Storage
+                        localStorage.setItem("Pais", Pais);
+                        localStorage.setItem("Ciudad", ciudad);
+                        localStorage.setItem("localizacion", localizacion);
+                        localStorage.setItem("mapLink", mapLink);
+                        localStorage.setItem("foto", foto);
+                        localStorage.setItem("Contraseña", Contraseña);
+                        localStorage.setItem("sensorTemperatura", sensorTemperatura);
+                        localStorage.setItem("sensorHumedad", sensorHumedad);
+                        localStorage.setItem("sensorSonido", sensorSonido);
+                        localStorage.setItem("sensorLuz", sensorLuz);
+                        localStorage.setItem("sensorMovimiento", sensorMovimiento);
+                        localStorage.setItem("minTemp", minTemp);
+                        localStorage.setItem("maxTemp", maxTemp);
+
+                        alert("Datos guardados con éxito.");
+                        window.location.href = "index.html";
+            }
+            } else {
+                alert("El país no corresponde a una serie de países permitidos.");
+            }
+        });
+    
+    </script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Room Project</title>
+    <link rel="stylesheet" type="text/css" href="iroom.css">
+</head>
+<body>
+    <div class="contenedor">
+        <div class="titulo">Smart Room Project</div>
+        <div class="menu">
+            <a href="minombre.html">Nombre</a></br>
+            <a href="config.html">Configuración</a>
+        </div>
+        <div class="informacion">
+            <script>
+                var fname = localStorage.getItem("fname");
+                if (fname) {
+                    document.write("¡Hola " + fname + ": Bienvenido a la Smart Room!.");
+                }
+            </script>
+        </div>
+        <div class="habitacion">
+            <h2>Datos de la Habitación</h2>
+            <a href="https://maps.app.goo.gl/qDwKYjw4r4iiQSrL6" target="_blank">Ver en Google Maps</a><br><br><br>    
+            <img src="habitacion.jpg" style="width: 512px; height: 284px;" alt="Imagen de la habitación"> 
+        </div>
+        <div class="sensores">
+            <h2>Datos de los Sensores</h2></br>
+            <table class="tabla1">
+                <tr>
+                    <th>Sensor</th>
+                    <th>Valor</th>
+                </tr>
+                <tr>
+                    <td>Temperatura</td>
+                    <td><div class="checkbox2" id="SensorTemperatura"></div></td>
+                </tr>
+                <tr>
+                    <td>Humedad</td>
+                    <td><div class="checkbox2" id="SensorHumedad"></div></td>
+                </tr>
+                <tr>
+                    <td>Sonido</td>
+                    <td><div class="checkbox2" id="SensorSonido"></div></td>
+                </tr>
+                <tr>
+                    <td>Luz</td>
+                    <td><div class="checkbox2" id="SensorLuz"></div></td>
+                </tr>
+                <tr>
+                    <td>Movimiento</td>
+                    <td><div class="checkbox2" id="SensorMovimiento"></div></td>
+                </tr>
+            </table>
+        </div>
+        <div class="pie"><img src="icono.jpg" style="width: 130px; height: 43px;"></div>
+    </div>
+</body>
+</html>
