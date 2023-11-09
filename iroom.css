@@ -189,3 +189,33 @@ input[type="range"]::-webkit-slider-thumb {
     text-align: center;
     clear: both;
 }
+
+.contenedor-galeria {
+    overflow-x: auto;
+}
+
+.galeria {
+    display: flex;
+    flex-wrap: nowrap; /* Evita que las imágenes se envuelvan a la siguiente línea */
+}
+
+.imagen {
+    margin: 10px;
+    position: relative;
+}
+
+#info {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    z-index: 999;
+}
+
+.oculto {
+    display: none;
+}
