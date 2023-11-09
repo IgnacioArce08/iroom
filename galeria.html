@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Estaciones Meteorológicas</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="galeria">
+    <div class="imagen" onmouseover="mostrarInfo('Imagen 1')" onmouseout="ocultarInfo()">
+        <img src="imagen1.jpg" alt="Imagen 1">
+    </div>
+    <div class="imagen" onmouseover="mostrarInfo('Imagen 2')" onmouseout="ocultarInfo()">
+        <img src="imagen2.jpg" alt="Imagen 2">
+    </div>
+    <!-- Agrega más imágenes según sea necesario -->
+
+    <div id="info" class="oculto"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
