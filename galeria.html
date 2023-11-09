@@ -3,52 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Estaciones Meteorológicas</title>
-    <link rel="stylesheet" href="iroom.css">
+    <link rel="stylesheet" type="text/css" href="iroom.css">
 </head>
 <body>
-
-<div class="contenedor-galeria">
-    <div class="galeria">
-        <div class="imagen izquierda" data-info="Estación 1">
-            <img src="estacion1.jpg" alt="Estación 1">
+    <div class="contenedor">
+        <div class="titulo">Galería de Estaciones Meteorológicas</div>
+        <div class="menu">
+            <a href="index.html">Volver a la página principal</a></br>
         </div>
-        <div class="imagen" data-info="Estación 2">
-            <img src="estacion2.jpg" alt="Estación 2">
-        </div>
-        <div class="imagen" data-info="Estación 3">
-            <img src="estacion3.jpg" alt="Estación 3">
-        </div>
-        <div class="imagen" data-info="Estación 4">
-            <img src="estacion4.jpg" alt="Estación 4">
-        </div>
-        <div class="imagen" data-info="Estación 5">
-            <img src="estacion5.jpg" alt="Estación 5">
-        </div>
-        <div class="imagen derecha" data-info="Estación 6">
-            <img src="estacion6.jpg" alt="Estación 6">
+    <div class="contenedor-galeria">
+        <div class="galeria">
+            <div class="imagen" data-info="París en otoño" data-imagen="estacion1.jpg">
+                <img src="estacion1.jpg" alt="Foto1">
+            </div>
+            <div class="imagen" data-info="Londres en invierno" data-imagen="estacion2.jpg">
+                <img src="estacion2.jpg" alt="Foto2">
+            </div>
+            <div class="imagen" data-info="Madrid en verano" data-imagen="estacion3.jpg">
+                <img src="estacion3.jpg" alt="Foto3">
+            </div>
+            <div class="imagen" data-info="Holanda en primavera" data-imagen="estacion4.jpg">
+                <img src="estacion4.jpg" alt="Foto4">
+            </div>
+            <div class="imagen" data-info="Alemania en invierno" data-imagen="estacion5.jpg">
+                <img src="estacion5.jpg" alt="Foto5">
+            </div>
+            <div class="imagen" data-info="Nueva York en verano" data-imagen="estacion6.jpg">
+                <img src="estacion6.jpg" alt="Foto6">
+            </div>
+            <div class="imagen" data-info="Paris en primavera" data-imagen="estacion7.jpg">
+                <img src="estacion7.jpg" alt="Foto7">
+            </div>
+            <div class="imagen" data-info="China en primavera" data-imagen="estacion8.jpg">
+                <img src="estacion8.jpg" alt="Foto8">
+            </div>
+            <div class="imagen" data-info="El Himalaya en otoño" data-imagen="estacion9.jpg">
+                <img src="estacion9.jpg" alt="Foto9">
+            </div>
+            <div class="imagen" data-info="Egipto en verano" data-imagen="estacion10.jpg">
+                <img src="estacion10.jpg" alt="Foto10">
+            </div>
         </div>
     </div>
-</div>
+    <div id="info" class="oculto"></div>
 
-<div id="info" class="oculto"></div>
+    <div class = "contenedorImagenGrande">
+        <!-- Nuevo elemento para mostrar la imagen en grande -->
+        <div id="imagenGrande" class="oculto">
+            <img id="imagenGrandeSrc" src="" alt="Imagen en grande">
+        </div>
+    </div>
+    <div class="pie"><img src="icono.jpg"></div>
+    
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
     $(document).ready(function() {
-        $(".imagen").hover(
-            function() {
-                var info = $(this).data("info");
-                mostrarInfo(info);
-            },
-            function() {
-                ocultarInfo();
-            }
-        );
+        $(".imagen").on("mouseenter", function() {
+            var info = $(this).data("info");
+            var imagenSrc = $(this).data("imagen");
+            mostrarInfo(info);
+            mostrarImagenGrande(imagenSrc);
+        });
 
-        $(".imagen").on("click", function() {
-            var direccion = $(this).hasClass("izquierda") ? "-=100px" : "+=100px";
-            $(".galeria").animate({scrollLeft: direccion}, "slow");
+        $(".imagen").on("mouseleave", function() {
+            ocultarInfo();
+            ocultarImagenGrande();
         });
 
         function mostrarInfo(info) {
@@ -58,6 +78,15 @@
 
         function ocultarInfo() {
             $("#info").fadeOut();
+        }
+
+        function mostrarImagenGrande(src) {
+            $("#imagenGrandeSrc").attr("src", src);
+            $("#imagenGrande").fadeIn();
+        }
+
+        function ocultarImagenGrande() {
+            $("#imagenGrande").fadeOut();
         }
     });
 </script>
