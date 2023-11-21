@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="iroom.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <h1>Información de las Estaciones</h1>
+    </header>
+
+    <div id="contenedor1" class="contenedor1">
+        <h2>Estaciones 1-5</h2>
+        <!-- Tabla 1 -->
+        <table class="tabla1" id="tabla1">
+            <thead>
+                <tr>
+                    <th>Ciudad</th>
+                    <th>Temperatura (º)</th>
+                    <th>Humedad (%)</th>
+                    <th>Ruido</th>
+                    <th>Nivel de luz</th>
+                    <th>Color de la iluminación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Espacios en blanco para dar formato -->
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <!-- Datos de la tabla 1 aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="contenedor2" class="contenedor1">
+        <h2>Estaciones 6-10</h2>
+        <!-- Tabla 2 -->
+        <table class="tabla1" id="tabla2">
+            <thead>
+                <tr>
+                    <th>Ciudad</th>
+                    <th>Temperatura (º)</th>
+                    <th>Humedad (%)</th>
+                    <th>Ruido</th>
+                    <th>Nivel de luz</th>
+                    <th>Color de la iluminación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Espacios en blanco para dar formato -->
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <!-- Datos de la tabla 2 aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="contenedor3" class="contenedor1">
+        <h2>Estaciones 11-15</h2>
+        <!-- Tabla 3 -->
+        <table class="tabla1" id="tabla3">
+            <thead>
+                <tr>
+                    <th>Ciudad</th>
+                    <th>Temperatura (º)</th>
+                    <th>Humedad (%)</th>
+                    <th>Ruido</th>
+                    <th>Nivel de luz</th>
+                    <th>Color de la iluminación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Espacios en blanco para dar formato -->
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <!-- Datos de la tabla 3 aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="contenedor4" class="contenedor1">
+        <h2>Estaciones 16-20</h2>
+        <!-- Tabla 4 -->
+        <table class="tabla1" id="tabla4">
+            <thead>
+                <tr>
+                    <th>Ciudad</th>
+                    <th>Temperatura (º)</th>
+                    <th>Humedad (%)</th>
+                    <th>Ruido</th>
+                    <th>Nivel de luz</th>
+                    <th>Color de la iluminación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Espacios en blanco para dar formato -->
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <tr class="espacio-blanco"><td colspan="6"></td></tr>
+                <!-- Datos de la tabla 4 aquí -->
+            </tbody>
+        </table>
+    </div>
+    
+    <nav>
+        <!-- Enlaces para cambiar entre las páginas -->
+        <a href="#" class="pagina-link" data-pagina="1">Página 1</a>
+        <a href="#" class="pagina-link" data-pagina="2">Página 2</a>
+        <a href="#" class="pagina-link" data-pagina="3">Página 3</a>
+        <a href="#" class="pagina-link" data-pagina="4">Página 4</a>
+    </nav>
+
+    <div class="pie"><img src="icono.jpg"></div>
+
+    <script>
+        // Oculta todos los contenedores excepto el primero al cargar la página
+        $(document).ready(function() {
+            $(".contenedor1:not(:first)").hide();
+        });
+
+        // Función para cambiar entre páginas
+        $(".pagina-link").on("click", function() {
+            var pagina = $(this).data("pagina");
+            $(".contenedor1").hide();
+            $("#contenedor" + pagina).show();
+            
+        });
+    </script>
+
+</body>
+</html>
