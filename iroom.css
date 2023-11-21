@@ -286,3 +286,16 @@ nav a {
     background-color:#fff;
     text-align: center;
 }
+.pagina-link2 {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 5px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #d19292 ;
+    border-radius: 5px;
+}
+
+.pagina-link2:hover {
+    background-color: #c08080;
+}
