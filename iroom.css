@@ -300,23 +300,44 @@ nav a {
     background-color: #c08080;
 }
 
-/* Estilos para el contenedor del histograma */
 .histograma-container {
+    display: none;
     margin-top: 20px;
+
 }
 
-/* Estilos para el canvas del histograma */
-#histograma-chart {
-    max-width: 600px;
-    margin: 20px 0;
+.histograma-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-/* Estilos para las etiquetas del histograma */
+/* Estilos para la etiqueta de la ciudad en el histograma */
 .histograma-label {
+    margin-right: 10px;
     font-weight: bold;
 }
 
-/* Estilos para las barras del histograma */
-.histograma-bar {
-    margin-bottom: 5px;
+/* Estilos para el contenedor de la barra y la etiqueta de valor */
+.bar-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+/* Estilos para la barra del histograma */
+.histograma-item div:last-child {
+    border-radius: 5px;
+    background-color: #3498db; /* Cambiado a un azul más suave */
+    margin-bottom: 1px;
+}
+
+.boton {
+    display: inline-block;
+    padding: 10px;
+    margin: 10px 5px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color:  #1a2b8d;
+    border-radius: 5px;
 }

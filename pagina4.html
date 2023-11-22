@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="iroom.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -28,10 +28,10 @@
             <tbody>
                 <tr>
                     <th>Mostrar histograma</th>
-                    <td><input type="checkbox" class="checkbox" name="column" value="1" id="temperatura" onclick="HacerHistograma(this.value)"></td>
-                    <td><input type="checkbox" class="checkbox" name="column" value="2" id="humedad" onclick="HacerHistograma(this.value)"></td>
-                    <td><input type="checkbox" class="checkbox" name="column" value="3" id="ruido" onclick="HacerHistograma(this.value)"></td>
-                    <td><input type="checkbox" class="checkbox" name="column" value="4" id="nivel_de_luz" onclick="HacerHistograma(this.value)"></td>
+                    <td><input type="checkbox" name="column" value="1" id="temperatura" onclick="loadHistogram(this.value)"></td>
+                    <td><input type="checkbox" name="column" value="2" id="humedad" onclick="loadHistogram(this.value)"></td>
+                    <td><input type="checkbox" name="column" value="3" id="ruido" onclick="loadHistogram(this.value)"></td>
+                    <td><input type="checkbox" name="column" value="4" id="nivel_de_luz" onclick="loadHistogram(this.value)"></td>
                 </tr>
                 <tr>
                     <td>Alcalá de H.</td>
@@ -78,6 +78,7 @@
 
         <!-- Contenedor del histograma -->
         <div id="histograma-container" class="histograma-container">
+            <h2 id="histograma-titulo"></h2>
             <canvas id="histograma-chart"></canvas>
         </div>
 
@@ -90,58 +91,66 @@
             <a href="pagina4.html" class="pagina-link" data-pagina="4">Página 4</a>
         </nav>
     </div>
-    <script>
-        function HacerHistograma(columnValue) {
-            var histogramContainer = document.getElementById("histograma-container");
-
-            // Oculta todos los histogramas
-            var allHistograms = document.getElementsByClassName("histograma-container");
-            for (var i = 0; i < allHistograms.length; i++) {
-                allHistograms[i].style.display = "none";
-            }
-
-            // Muestra el histograma correspondiente
-            var currentHistogram = document.getElementById("histograma-" + columnValue);
-            currentHistogram.style.display = "block";
-
-            // Limpia el contenedor del histograma
-            histogramContainer.innerHTML = "";
-
-            // Obtener los nombres de las ciudades y valores de la columna seleccionada
-            var cityNames = [];
-            var columnValues = [];
-
-            $("#tabla4 tbody tr").each(function (index, row) {
-                var cells = $(row).find("td");
-
-                if (index !== 0 && cells.length > 0) {
-                    cityNames.push(cells.eq(0).text()); // Nombre de la ciudad (primera columna)
-                    columnValues.push(parseInt(cells.eq(columnValue).text())); // Valor de la columna seleccionada
-                }
-            });
-
-            // Crear un gráfico de barras con Chart.js
-            var ctx = document.getElementById("histograma-chart").getContext("2d");
-            var histogramChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: cityNames,
-                    datasets: [{
-                        label: 'Histograma',
-                        data: columnValues,
-                        backgroundColor: '#7e7100',
-                    }],
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        },
-                    },
-                },
-            });
-        }
-    </script>
+	<div class="pie"><img src="icono.jpg"></div>
+	<script>
+		function loadHistogram(columnValue) {
+			var histogramContainer = document.getElementById("histograma-container");
+	
+			// Obtener el checkbox correspondiente al valor de la columna
+			var checkbox = document.getElementById("tabla4").querySelector("input[value='" + columnValue + "']");
+	
+			// Desmarcar todas las otras checkboxes
+			$("input[name='column']").not(checkbox).prop('checked', false);
+	
+			if (checkbox.checked) {
+				histogramContainer.style.display = "block"; // Mostrar el histograma si el checkbox está marcado
+			} else {
+				histogramContainer.style.display = "none"; // Ocultar el histograma si el checkbox no está marcado
+				return; // Salir de la función si el checkbox no está marcado
+			}
+	
+			histogramContainer.innerHTML = ""; // Limpiar el contenedor
+	
+			var columnSelected = parseInt(columnValue);
+			var data = [];
+	
+			// Obtener los nombres de las ciudades y valores de la columna seleccionada
+			var cityNames = [];
+			var columnValues = [];
+	
+			$("#tabla4 tr").each(function (index, row) {
+				if (index !== 0 && $(row).find("td:first-child").text() !== "Mostrar histograma") {
+					var cells = $(row).find("td");
+					cityNames.push(cells.eq(0).text()); // Nombre de la ciudad (primera columna)
+					columnValues.push(parseInt(cells.eq(columnSelected).text())); // Valor de la columna seleccionada
+				}
+			});
+	
+			// Obtener el valor máximo de la columna seleccionada
+			var maxValue = Math.max(...columnValues);
+	
+			// Crear elementos para el histograma con nombres y barras
+			columnValues.forEach(function (value, index) {
+				var histogramItem = document.createElement("div");
+				histogramItem.classList.add("histograma-item");
+	
+				var label = document.createElement("div");
+				label.textContent = cityNames[index]; // Nombre de la ciudad
+				label.classList.add("histograma-label");
+	
+				var bar = document.createElement("div");
+				bar.style.width = (value * 2) + "px"; // Ajustar el ancho de la barra según el valor
+				bar.style.height = "15px"; // Altura fija de las barras
+				bar.style.backgroundColor = "#000000"; // Color de las barras
+				bar.style.marginBottom = "1px"; // Espacio entre barras
+				bar.style.flexGrow = (value / maxValue).toFixed(2); // Proporcionalidad de la altura
+	
+				histogramItem.appendChild(label);
+				histogramItem.appendChild(bar);
+				histogramContainer.appendChild(histogramItem); // Agregar al contenedor del histograma
+			});
+		}
+	</script>
+	
 </body>
-
 </html>
