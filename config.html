@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="iroom.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <div class="contenedor">
@@ -138,6 +139,29 @@
 
     document.getElementById("SensorMovimiento").addEventListener("click", function() {
         toggleCheckbox("SensorMovimiento");
+    });
+
+    document.addEventListener ("DOMContentLoaded", function() {
+        var paisInput = document.getElementById("Pais");
+        var Ciudad = document.getElementById("Ciudad");
+        paisInput.addEventListener("input",function () {
+            var PaisSeleccionado = paisInput.value.toLowerCase();
+            var url = PaisSeleccionado + ".txt";
+            cargarCiudades(url);
+        });
+
+        function cargarCiudades (url) {
+            $.get(url, function (data) {
+                var ciudades = data.split("\n");
+                Ciudad.innerHTML = "";
+
+                ciudades.forEach (function(ciudad1) {
+                    var opcion = document.createElement ("opcion");
+                    opcion.text = ciudad1.trim();
+                    Ciudad.add(opcion);
+                });
+            });
+        }
     });
 
     function verEnGoogleMaps() {
