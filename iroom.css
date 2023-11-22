@@ -300,7 +300,23 @@ nav a {
     background-color: #c08080;
 }
 
-.histograma {
-    border: 3px;
+/* Estilos para el contenedor del histograma */
+.histograma-container {
+    margin-top: 20px;
+}
+
+/* Estilos para el canvas del histograma */
+#histograma-chart {
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+/* Estilos para las etiquetas del histograma */
+.histograma-label {
     font-weight: bold;
+}
+
+/* Estilos para las barras del histograma */
+.histograma-bar {
+    margin-bottom: 5px;
 }

@@ -282,26 +282,5 @@
         }
     });
 </script>
-<script>
-    $(document).ready(function () {
-        // Manejar el evento de cambio en el campo de país
-        $('#pais').on('change', function () {
-            var pais = $(this).val();
-            // Realizar una solicitud Ajax al servidor para obtener ciudades
-            $.ajax({
-                type: 'GET',
-                url: 'Ciudades.php', // Reemplaza esto con la URL correcta
-                data: { pais: pais },
-                success: function (data) {
-                    // Actualizar el contenido del campo de ciudad con las ciudades obtenidas
-                    $('#ciudad').html(data).prop('disabled', false);
-                },
-                error: function () {
-                    alert('Error al obtener ciudades.');
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>
