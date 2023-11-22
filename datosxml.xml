@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tabla>
+	<ciudad>
+		<nombre>Alcalá de H.</nombre>
+		<temperatura>25</temperatura>
+		<humedad>48</humedad>
+		<ruido>150</ruido>
+		<nivel_de_luz>120</nivel_de_luz>
+		<color_de_iluminacion>000000</color_de_iluminacion>
+	</ciudad>
+	<ciudad>
+		<nombre>Alicante</nombre>
+		<temperatura>30</temperatura>
+		<humedad>69</humedad>
+		<ruido>180</ruido>
+		<nivel_de_luz>211</nivel_de_luz>
+		<color_de_iluminacion>FF0000</color_de_iluminacion>
+	</ciudad>
+	<ciudad>
+		<nombre>Badajoz</nombre>
+		<temperatura>35</temperatura>
+		<humedad>30</humedad>
+		<ruido>50</ruido>
+		<nivel_de_luz>150</nivel_de_luz>
+		<color_de_iluminacion>00FF00</color_de_iluminacion>
+	</ciudad>
+	<ciudad>
+		<nombre>Burgos</nombre>
+		<temperatura>18</temperatura>
+		<humedad>42</humedad>
+		<ruido>211</ruido>
+		<nivel_de_luz>180</nivel_de_luz>
+		<color_de_iluminacion>0000FF</color_de_iluminacion>
+	</ciudad>
+	<ciudad>
+		<nombre>Córdoba</nombre>
+		<temperatura>35</temperatura>
+		<humedad>41</humedad>
+		<ruido>150</ruido>
+		<nivel_de_luz>50</nivel_de_luz>
+		<color_de_iluminacion>FFFFFF</color_de_iluminacion>
+	</ciudad>
+
+</tabla>

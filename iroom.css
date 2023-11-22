@@ -299,3 +299,8 @@ nav a {
 .pagina-link2:hover {
     background-color: #c08080;
 }
+
+.histograma {
+    border: 3px;
+    font-weight: bold;
+}

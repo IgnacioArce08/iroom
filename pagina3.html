@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="iroom.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script  type="text/javascript" src="tablas.js"></script>
+</head>
+<body>
+	<header><h1>Información de las Estaciones</h1></header>
+	<button id="importarJson">Cargar datos json</button></br>
+    <table class="tabla1" id="tabla1json">
+		<tbody>
+		</tbody>
+	</table></br>
+
+<script>
+		$(document).ready(function(){
+			$('#tabla1json').hide();
+			$('#importarJson').click(function(){
+               $.ajax({
+				      type: 'GET',
+				      url:'datosjson.json',
+				      dataType:'json'
+			   }).done((data)=>{
+			   	   $.each(data, function(indice,ciudad){
+			   	   	let fila = $('<tr>');
+					fila.append($(`<td>${ciudad.nombre}</td>`));
+			   	   	fila.append($(`<td>${ciudad.temperatura}</td>`));
+			   	   	fila.append($(`<td>${ciudad.humedad}</td>`));
+			   	   	fila.append($(`<td>${ciudad.ruido}</td>`));
+			   	   	fila.append($(`<td>${ciudad.nivel_de_luz}</td>`));
+			   	   	fila.append($(`<td>${ciudad.color_de_iluminacion}</td>`));
+			   	   	$('#tabla1json tbody').append(fila);
+
+			   	   });
+                   $('#tabla1json').show();
+			   });
+
+           });
+		});
+	</script>
+
+<nav>
+    <a href="tablas.html" class="pagina-link" data-pagina="1">Página 1</a>
+    <a href="pagina2.html" class="pagina-link" data-pagina="2">Página 2</a>
+    <a href="pagina3.html" class="pagina-link" data-pagina="3">Página 3</a>
+    <a href="pagina4.html" class="pagina-link" data-pagina="4">Página 4</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+[
+
+    {
+      "nombre":"Ciudad",
+      "temperatura":"Temperatura(º)",
+      "humedad":"Humedad(%)",
+      "ruido":"Ruido",
+      "nivel_de_luz":"Nivel de luz",
+      "color_de_iluminacion":"Color de iluminacion"
+     },
+     {
+      "nombre":"Álcala de H",
+      "temperatura":25,
+      "humedad":48,
+      "ruido":150,
+      "nivel_de_luz":120,
+      "color_de_iluminacion":"000000"
+     },
+     {
+      "nombre":"Alicante",
+      "temperatura":30,
+      "humedad":69,
+      "ruido":180,
+      "nivel_de_luz":211,
+      "color_de_iluminacion":"FF0000"
+     },
+     {
+      "nombre":"Badajoz",
+      "temperatura":35,
+      "humedad":30,
+      "ruido":50,
+      "nivel_de_luz":150,
+      "color_de_iluminacion":"00FF00"
+     },
+     {
+      "nombre":"Burgos",
+      "temperatura":18,
+      "humedad":42,
+      "ruido":211,
+      "nivel_de_luz":180,
+      "color_de_iluminacion":"0000FF"
+     },
+     {
+      "nombre":"Córdoba",
+      "temperatura":35,
+      "humedad":41,
+      "ruido":150,
+      "nivel_de_luz":50,
+      "color_de_iluminacion":"FFFFFF"
+     }
+ 
+ ]

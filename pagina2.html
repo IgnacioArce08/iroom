@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="iroom.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script  type="text/javascript" src="tablas.js"></script>
+</head>
+<body>
+    <header><h1>Información de las Estaciones</h1></header>
+	<button id="cargar_lista">Cargar datos xml</button></br>
+<table class="tabla1" id="tablaxml">
+	<tbody></tbody>
+</table><br>
+
+<script >
+	document.getElementById("cargar_lista").addEventListener("click",cargar_lista);
+	function cargar_lista(){
+		var xhr= new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if (this.readyState == 4 && this.status == 200) {
+			cargarXML(this);
+		    }
+		};
+		xhr.open("GET", "datosxml.xml", true);
+		xhr.send();
+	}
+     function cargarXML(xml){
+          var docXML = xml.responseXML;
+          var tabla = "<tr><th>Ciudad</th><th>Temperatura(º)</th><th>Humedad(%)<th>Ruido</th><th>Nivel de luz</th><th>Color de iluminación</th></tr>";
+          var discos= docXML.getElementsByTagName("ciudad");
+          for (var i = 0; i <discos.length; i++) {
+          	tabla += "<tr><td>";
+            tabla += discos[i].getElementsByTagName("nombre")[0].textContent;
+            tabla += "</td><td>";
+            tabla += discos[i].getElementsByTagName("temperatura")[0].textContent;
+            tabla += "</td><td>";
+            tabla += discos[i].getElementsByTagName("humedad")[0].textContent;
+            tabla += "</td><td>";
+            tabla += discos[i].getElementsByTagName("ruido")[0].textContent;
+            tabla += "</td><td>";
+            tabla += discos[i].getElementsByTagName("nivel_de_luz")[0].textContent;
+            tabla += "</td><td>";
+            tabla += discos[i].getElementsByTagName("color_de_iluminacion")[0].textContent;
+            tabla += "</td></tr>";
+         }
+         document.getElementById("tablaxml").innerHTML = tabla;
+     }
+</script></br>
+
+<nav>
+    <a href="tablas.html" class="pagina-link" data-pagina="1">Página 1</a>
+    <a href="pagina2.html" class="pagina-link" data-pagina="2">Página 2</a>
+    <a href="pagina3.html" class="pagina-link" data-pagina="3">Página 3</a>
+    <a href="pagina4.html" class="pagina-link" data-pagina="4">Página 4</a>
+</nav>
+
+</body>
+</html>
