@@ -56,8 +56,7 @@
                 </datalist>
                 <br><br>
                 <label for="Ciudad">Ciudad:</label>
-                <input list="lista" type="text" id="Ciudad" name="Ciudad">
-                <datalist id="lista"></datalist>
+                <input type="text" id="Ciudad" name="Ciudad">
                 <br><br>
                 <label for="localizacion">Coordenadas GPS </label>
                 <input type="text" id="localizacion" name="localizacion" placeholder="Ejemplo: N 40º 30' 45.00&quot;, O 3º 20' 54.00&quot;">
@@ -142,32 +141,28 @@
         toggleCheckbox("SensorMovimiento");
     });
 
-		function cargaCiudad(){
-		var x = document.getElementById('Pais');
-		var xV = x.value;
-		if(xV =='Francia')
-		{
-		   const xhttp = new XMLHttpRequest();
-		 xhttp.onload = function() {
-		   document.getElementById("lista").innerHTML =
-		   this.responseText;
-		 }
-		 xhttp.open("GET","francia.txt");
-		 xhttp.send();
-		 
-		}
-		if(xV =='Alemania')
-		{
-		   const xhttp = new XMLHttpRequest();
-		 xhttp.onload = function() {
-		   document.getElementById("lista").innerHTML =
-		   this.responseText;
-		 }
-		 xhttp.open("GET","alemania.txt");
-		 xhttp.send();
-		 
-		}
-	}
+    document.addEventListener ("DOMContentLoaded", function() {
+        var paisInput = document.getElementById("Pais");
+        var Ciudad = document.getElementById("Ciudad");
+        paisInput.addEventListener("input",function () {
+            var PaisSeleccionado = paisInput.value.toLowerCase();
+            var url = PaisSeleccionado + ".txt";
+            cargarCiudades(url);
+        });
+
+        function cargarCiudades (url) {
+            $.get(url, function (data) {
+                var ciudades = data.split("\n");
+                Ciudad.innerHTML = "";
+
+                ciudades.forEach (function(ciudad1) {
+                    var opcion = document.createElement ("opcion");
+                    opcion.text = ciudad1.trim();
+                    Ciudad.add(opcion);
+                });
+            });
+        }
+    });
 
     function verEnGoogleMaps() {
         var localizacion = document.getElementById("localizacion").value;
