@@ -56,7 +56,8 @@
                 </datalist>
                 <br><br>
                 <label for="Ciudad">Ciudad:</label>
-                <input type="text" id="Ciudad" name="Ciudad">
+                <input list="lista" type="text" id="Ciudad" name="Ciudad">
+                <datalist id="lista"></datalist>
                 <br><br>
                 <label for="localizacion">Coordenadas GPS </label>
                 <input type="text" id="localizacion" name="localizacion" placeholder="Ejemplo: N 40º 30' 45.00&quot;, O 3º 20' 54.00&quot;">
@@ -142,7 +143,7 @@
     });
 
 		function cargaCiudad(){
-		var x = document.getElementById('pais');
+		var x = document.getElementById('Pais');
 		var xV = x.value;
 		if(xV =='Francia')
 		{
