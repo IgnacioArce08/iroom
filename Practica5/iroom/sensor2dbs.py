@@ -7,8 +7,7 @@ import json
 import urllib3
 import mysql.connector
 
-db = mysql.connector.connect(
-    host="localhost", user="alex", passwd="alex", db="practicaserv1")
+db = mysql.connector.connect(host="localhost", user="adroom", passwd="adminroom", db="iroom")
 cursor = db.cursor()
 
 type_sensor = ['temperature', 'humidity', 'light', 'sound', 'motion']
@@ -42,8 +41,7 @@ def updateSensor(code):
 
 def controlLightColor():
     try:
-        cursor.execute(
-            """SELECT valor FROM sensors WHERE nombre='red' order by time desc""")
+        cursor.execute("""SELECT valor FROM sensors WHERE nombre='red' order by time desc""")
         red = int(cursor.fetchone()[0])
         if (red != last_value[5]):
             last_value[5] = red
@@ -53,8 +51,7 @@ def controlLightColor():
         print('Error al consultar base de datos o conectar con iroom')
 
     try:
-        cursor.execute(
-            """SELECT valor FROM sensors WHERE nombre='green' order by time desc""")
+        cursor.execute("""SELECT valor FROM sensors WHERE nombre='green' order by time desc""")
         green = int(cursor.fetchone()[0])
         if (green != last_value[6]):
             last_value[6] = green
@@ -64,8 +61,7 @@ def controlLightColor():
         print('Error al consultar base de datos o conectar con iroom')
 
     try:
-        cursor.execute(
-            """SELECT valor FROM sensors WHERE nombre='blue' order by time desc""")
+        cursor.execute("""SELECT valor FROM sensors WHERE nombre='blue' order by time desc""")
         blue = int(cursor.fetchone()[0])
         if (blue != last_value[7]):
             last_value[7] = blue
