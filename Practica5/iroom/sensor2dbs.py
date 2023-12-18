@@ -7,7 +7,8 @@ import json
 import urllib3
 import mysql.connector
 
-db = mysql.connector.connect(host="localhost", user="adroom", passwd="adminroom", db="iroom")
+db = mysql.connector.connect(
+    host="localhost", user="alex", passwd="alex", db="practicaserv1")
 cursor = db.cursor()
 
 type_sensor = ['temperature', 'humidity', 'light', 'sound', 'motion']
