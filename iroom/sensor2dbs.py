@@ -7,7 +7,7 @@ import json
 import urllib3
 import mysql.connector
 
-db = mysql.connector.connect(host = "localhost", user = "sertel", passwd = "Practica_4", db = "practica5")
+db = mysql.connector.connect(host = "localhost", user = "nacho", passwd = "@Nacho08", db = "iroom")
 cursor = db.cursor()
 
 type_sensor = ['temperature', 'humidity', 'light', 'sound', 'motion']
@@ -15,7 +15,7 @@ last_value = [0,0,0,0,0,0,0,0]
 
 #PONER LA IP DE LA MÁQUINA VIRTUAL EN LA QUE ESTÉ CORRIENDO EL EMULADOR
 server = 'http://127.0.0.1:8000/'
-server = 'http://192.168.44.131:8000/'
+server = 'http://192.168.56.103:8000/'
 http = urllib3.PoolManager()
 def updateSensor(code):
 	
@@ -57,9 +57,9 @@ def controlLightColor():
 			last_value[6] = green
 			last_value[7] = blue
 	
-			response_red = http.request('PUT', 'http://192.168.44.131:8000/red/'+str(red))
-			response_green = http.request('PUT', 'http://192.168.44.131:8000/green/'+str(green))
-			response_blue = http.request('PUT', 'http://192.168.44.131:8000/blue/'+str(blue))
+			response_red = http.request('PUT', 'http://192.168.56.103:8000/red/'+str(red))
+			response_green = http.request('PUT', 'http://192.168.56.103:8000/green/'+str(green))
+			response_blue = http.request('PUT', 'http://192.168.56.103:8000/blue/'+str(blue))
 			
 			print("Color RGB: Red - " + str(red) + "Green -" + str(green) + "Blue -" + str(blue))
 	except ValueError:
