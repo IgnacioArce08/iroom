@@ -1,8 +1,8 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+# -- coding: utf-8 --
 
 from flask import Flask, url_for, session, render_template, Response, request, flash, redirect, abort, jsonify
-from flask_mysql import MySQL
+from flask.mysql import MySQL
 import json
 import time
 import random
