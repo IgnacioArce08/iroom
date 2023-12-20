@@ -2,7 +2,7 @@
 # -- coding: utf-8 --
 
 from flask import Flask, url_for, session, render_template, Response, request, flash, redirect, abort, jsonify
-from flask.mysql import MySQL
+from flaskext.mysql import MySQL
 import json
 import time
 import random
