@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, url_for, session, render_template, Response, request, flash, redirect, abort, jsonify
-from flaskext.mysql import MySQL
+from flask_mysql import MySQL
 import json
 import time
 import random
@@ -169,7 +169,7 @@ def show_short_url(short_code):
     return render_template('show_short_url.html', short_code=short_code)
 
 
-if __name__=='_main_':
-	with app.test_request_context():
-		app.debug = True
-		app.run(host ='0.0.0.0')
+if __name__ == '__main__':
+    with app.test_request_context():
+        app.debug = True
+        app.run(host='0.0.0.0')
