@@ -67,7 +67,7 @@ def controlLightColor():
 
 		""" PARTE 1: COMPLETAR AQUI EL RESTO DE CÓDIGO PARA PROCESAR EL COLOR VERDE Y AZUL"""
 
-if _name_ == "_main_":
+if __name__ == "__main__":
 	cursor=db.cursor(buffered=True)
 	cursor.execute ("""DROP table sensors""")
 	cursor.execute ("""create table sensors( time TIMESTAMP DEFAULT CURRENT_TIMESTAMP, nombre VARCHAR(15), valor INTEGER)""")
