@@ -14,8 +14,8 @@ type_sensor = ['temperature', 'humidity', 'light', 'sound', 'motion']
 last_value = [0, 0, 0, 0, 0, 0, 0, 0]
 
 # PONER LA IP DE LA MÁQUINA VIRTUAL EN LA QUE ESTÉ CORRIENDO EL EMULADOR
-#server = 'http://127.0.0.1:8000/'
- server = 'http://192.168.56.103:8000/'
+server = 'http://127.0.0.1:8000/'
+# server = 'http://192.168.56.103:8000/'
 # server = 'http://10.0.2.15:8000/'
 http = urllib3.PoolManager()
 
