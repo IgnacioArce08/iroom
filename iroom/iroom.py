@@ -72,10 +72,6 @@ def event_sensor():
             last_value[4] = movimiento
             # flash('Actualizado sensor de movimiento)
 
-        """PARTE 2: ARRIBA TIENE UN EJEMPLO DE ATUALIZACIÓN DEL SENSOR DE TEMPERATURA POR SSE CUANDO
-            SE HA ACTUALIZADO EL VALOR EN LA BASE DE DATOS
-            ESCRIBA LE CODIGO PARA EL RESTO DE SENSORES """
-
 
 @app.route('/update_sensor')
 def sse_request():
@@ -142,10 +138,8 @@ def setcolor():
     try:
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute(
-            """INSERT INTO sensors(nombre, valor) values(%s, %s)""", ('red', red))
-        cursor.execute(
-            """INSERT INTO sensors(nombre, valor) values(%s, %s)""", ('green', green))
+        cursor.execute("""INSERT INTO sensors(nombre, valor) values(%s, %s)""", ('red', red))
+        cursor.execute("""INSERT INTO sensors(nombre, valor) values(%s, %s)""", ('green', green))
         cursor.execute("""INSERT INTO sensors(nombre, valor) values(%s, %s)""", ('blue', blue))
         conn.commit()
     except mysql.connector.Error as error:
