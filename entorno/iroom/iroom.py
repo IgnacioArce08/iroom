@@ -11,8 +11,8 @@ import string
 
 mysql = MySQL()
 
-app = Flask(_name_)
-app.config.from_object(_name_)
+app = Flask(__name__)
+app.config.from_object(__name__)
 app.config.from_envvar('IROOM_SETTINGS', silent=True)
 mysql.init_app(app)
 last_value = [0,0,0,0,0]
