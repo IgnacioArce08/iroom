@@ -15,7 +15,8 @@ last_value = [0, 0, 0, 0, 0, 0, 0, 0]
 
 # PONER LA IP DE LA MÁQUINA VIRTUAL EN LA QUE ESTÉ CORRIENDO EL EMULADOR
 server = 'http://127.0.0.1:8000/'
-# server = 'http://10.0.21.132:8000/'
+server = 'http://192.168.56.103:8000/'
+server = 'http://10.0.2.15:8000/'
 http = urllib3.PoolManager()
 
 
@@ -31,7 +32,6 @@ def updateSensor(code):
 
     if value != last_value[code]:
         try:  
-            # """ PARTE 1: COMPLETAR AQUÍ EL CÓDIGO PARA ESCRIBIR EN LA BASE DE DATOS EL VALOR DEL SENSOR"""
             print('Insertando...', type_sensor[code], '\t', value)
             cursor.execute("""INSERT INTO sensors(nombre, valor) values(%s, %s)""", (type_sensor[code], value))
         except ValueError:
@@ -41,8 +41,7 @@ def updateSensor(code):
 
 def controlLightColor():
     try:
-        cursor.execute(
-            """SELECT valor FROM sensors WHERE nombre='red' order by time desc""")
+        cursor.execute("""SELECT valor FROM sensors WHERE nombre='red' order by time desc""")
         red = int(cursor.fetchone()[0])
         if (red != last_value[5]):
             last_value[5] = red

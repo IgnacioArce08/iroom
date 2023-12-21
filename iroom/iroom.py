@@ -91,7 +91,7 @@ def cod(codigo):
             enlace = cursor.fetchone()[0]
             return redirect (enlace)
         except:
-            print("No se ha registtrado")
+            print("No se ha registrado")
     else:
         return redirect (url_for(login))
     
@@ -156,4 +156,4 @@ def setcolor():
 if __name__ == '__main__':
     with app.test_request_context():
         app.debug = True
-        app.run(host='0.0.0.0')
+        app.run(host='0.0.0.0', port=8000)
