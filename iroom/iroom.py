@@ -92,7 +92,6 @@ def cod(codigo):
         return redirect (url_for(login))
     
 
-
 @app.route('/')
 def main():
     return render_template('index.html')
