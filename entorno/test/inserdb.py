@@ -4,7 +4,7 @@
 import sys
 import mysql.connector
 
-db = mysql.connector.connect(host = "localhost", user = "adroom", passwd = "adminroom", db = "iroom")
+db = mysql.connector.connect(host = "localhost", user = "nacho", passwd = "@Nacho08", db = "iroom")
 sensor = sys.argv[1]
 valor = sys.argv[2]
 cursor=db.cursor(buffered=True)
